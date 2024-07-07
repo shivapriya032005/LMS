@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Not Found</title>
+</head>
+<body>
+    <h1>Book Not Found</h1>
+    <p>No book found with the barcode: {{ barcode }}</p>
+    <a href="{% url 'scan_barcode' %}">Try Again</a>
+</body>
+</html>

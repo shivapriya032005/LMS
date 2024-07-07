@@ -1,0 +1,172 @@
+<!-- library/admin_viewbook.html -->
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Available Books in Library</title>
+    <link rel="shortcut icon" href="{% static 'images/logo-transparent.png' %}" type="image/x-icon">
+    <style media="screen">
+        table.redTable {
+            border: 2px solid #607d8b;
+            background-color: #EEE7DB;
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;
+        }
+        table.redTable td, table.redTable th {
+            border: 1px solid #AAAAAA;
+            padding: 8px 10px;
+        }
+        table.redTable tbody td {
+            font-size: 14px;
+        }
+        table.redTable tr:nth-child(even) {
+            background: #ffffff;
+        }
+        table.redTable thead {
+            background: #607d8b;
+            color: #FFFFFF;
+        }
+        table.redTable thead th {
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            border-left: 2px solid #607d8b;
+        }
+        table.redTable thead th:first-child {
+            border-left: none;
+        }
+        table.redTable tfoot {
+            font-size: 13px;
+            font-weight: bold;
+            color: #FFFFFF;
+            background: #607d8b;
+        }
+        table.redTable tfoot td {
+            font-size: 13px;
+        }
+        table.redTable tfoot .links {
+            text-align: right;
+        }
+        table.redTable tfoot .links a{
+            display: inline-block;
+            background: #FFFFFF;
+            color: #607d8b;
+            padding: 6px 12px;
+            border-radius: 5px;
+        }
+        .filter-form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .filter-form select {
+            padding: 8px;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .filter-form input[type="text"] {
+            padding: 8px;
+            margin: 0 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .filter-form button {
+            padding: 8px 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .filter-form button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    {% include "library/navbaradmin.html" %}
+    <br>
+    <br>
+    <div class="container">
+        <h3 class="p-3 mb-2 bg-success text-white" style="font-size: 30px; text-align: center;">Available Books in Library</h3>
+        <form id="filterForm" class="filter-form">
+            <label for="filter_option">Filter By:</label>
+            <select id="filter_option">
+                <option value="name">Name</option>
+                <option value="isbn">ISBN</option>
+                <option value="author">Author</option>
+                <option value="category">Category</option>
+            </select>
+            <input type="text" id="filter_value" name="filter_value" placeholder="Enter filter value">
+            <button type="button" onclick="applyFilter()">Filter</button>
+        </form>
+
+        <table id="booksTable" class="redTable">
+            <thead>
+                <tr>
+                    <th>Book Name</th>
+                    <th>ISBN</th>
+                    <th>Author</th>
+                    <th>Category</th>
+                    <th>Delete book</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for book in books %}
+                <tr>
+                    <td>{{ book.name }}</td>
+                    <td>{{ book.isbn }}</td>
+                    <td>{{ book.author }}</td>
+                    <td>{{ book.category }}</td>
+                    <td><form method="post" action="{% url 'delete_book' book.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Delete</button>
+                    </form></td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="4">No books found.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    
+
+    <br><br><br><br><br><br><br><br><br>
+    {% include "library/footer.html" %}
+
+    <script>
+        function applyFilter() {
+            var filterOption = document.getElementById("filter_option").value;
+            var filterValue = document.getElementById("filter_value").value.toUpperCase();
+            var table = document.getElementById("booksTable");
+            var rows = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < rows.length; i++) {
+                var cells = rows[i].getElementsByTagName("td");
+                var showRow = false;
+
+                for (var j = 0; j < cells.length; j++) {
+                    var cell = cells[j];
+                    if (cell) {
+                        var textValue = cell.textContent || cell.innerText;
+                        if (textValue.toUpperCase().indexOf(filterValue) > -1) {
+                            showRow = true;
+                            break;
+                        }
+                    }
+                }
+
+                if (showRow) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>

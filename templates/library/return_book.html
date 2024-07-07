@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Return Book</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    {% include "library/navbar.html" %}
+    <div class="container">
+        <h1>Return Book</h1>
+        <div class="card">
+            <div class="card-body">
+                <p>Are you sure you want to return the book <strong>{{ book.name }}</strong> by <strong>{{ book.author }}</strong>?</p>
+                <form method="post" action="{% url 'return_book' book.id %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-primary">Yes, Return Book</button>
+                    <a href="{% url 'viewissuedbookbystudent' %}" class="btn btn-secondary">Cancel</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    {% include "library/footer.html" %}
+</body>
+</html>

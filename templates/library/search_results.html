@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Search Books</title>
+    <link rel="icon" href="{% static 'images/logo-transparent.png' %}" type="image/x-icon"/>
+    <style>
+        body {
+            background-color: aliceblue;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .top-bar {
+            background-color: rgb(59, 59, 59);
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 1.5em;
+        }
+
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-form label {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .search-form input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-form button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-form button:hover {
+            background-color: #45a049;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li {
+            padding: 10px;
+            background-color: #f1f1f1;
+            margin-bottom: 5px;
+            border-radius: 5px;
+        }
+
+        .back-to-home {
+            display: block;
+            text-align: center;
+            margin: 20px 0;
+            text-decoration: none;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+
+        .back-to-home:hover {
+            color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">Library Management System</div>
+    <div class="content">
+        <h1>Search Books</h1>
+        <form action="{% url 'search_books' %}" method="GET" class="search-form">
+            <label for="query">Search by book name or author:</label><br>
+            <input type="text" id="query" name="query">
+            <button type="submit">Search</button>
+        </form>
+
+        {% if books %}
+            <h2>Search Results</h2>
+            <ul>
+                {% for book in books %}
+                    <li>{{ book.name }} by {{ book.author }}</li>
+                    <!-- Add other book details as needed -->
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No books found.</p>
+        {% endif %}
+
+        <a href="/" class="back-to-home">Back to Home</a>
+    </div>
+
+    {% include "library/footer.html" %}
+</body>
+</html>

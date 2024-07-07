@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About-us</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<link rel="shortcut icon" href="{%static 'images/logo-transparent.png' %}" type="image/x-icon">
+<script
+      src="https://kit.fontawesome.com/64d58efce2.js"
+      crossorigin="anonymous"
+    ></script>
+</head>
+<style>
+  *{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+body{
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: aliceblue;
+}
+.about{
+    background: url(https://img.freepik.com/premium-photo/open-book-with-fantasy-world-popping-out-world-book-day_556176-1257.jpg) no-repeat left;
+    background-size: 55%;
+    background-color: aliceblue;
+    overflow: hidden;
+    padding: 100px 0;
+}
+.inner-section{
+    width: 55%;
+    float: right;
+    background-color: aliceblue;
+    padding: 140px;
+    box-shadow: 10px 10px 8px rgba(0,0,0,0.3);
+}
+.inner-section h1{
+    margin-bottom: 30px;
+    font-size: 30px;
+    font-weight: 900;
+}
+.text{
+    font-size: 13px;
+    color: #545454;
+    line-height: 30px;
+    text-align: justify;
+    margin-bottom: 40px;
+}
+.skills button{
+    font-size: 22px;
+    text-align: center;
+    letter-spacing: 2px;
+    border: none;
+    border-radius: 20px;
+    padding: 8px;
+    width: 200px;
+    background-color: #00999c;
+    color: white;
+    cursor: pointer;
+}
+.skills button:hover{
+    transition: 1s;
+    background-color: #ecf5f5;
+    color: #00999c;
+}
+@media screen and (max-width:1200px){
+    .inner-section{
+        padding: 80px;
+    }
+}
+@media screen and (max-width:1000px){
+    .about{
+        background-size: 100%;
+        padding: 100px 40px;
+    }
+    .inner-section{
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:600px){
+    .about{
+        padding: 0;
+    }
+    .inner-section{
+        padding: 60px;
+    }
+    .skills button{
+        font-size: 19px;
+        padding: 5px;
+        width: 160px;
+    }
+}
+.icon {
+  width: 28px;
+  margin-right: 0.7rem;
+}
+.social-media {
+  padding: 2rem 0 0 0;
+}
+
+.social-media p {
+  color: #333;
+}
+
+.social-icons {
+  display: flex;
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  width: 35px;
+  height: 35px;
+  border-radius: 5px;
+  background: linear-gradient(45deg, #1abc9c, #149279);
+  color: #fff;
+  text-align: center;
+  line-height: 35px;
+  margin-right: 0.5rem;
+  transition: 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.05);
+}
+
+</style>
+<body>
+  {% include "library/navbaradmin.html" %}
+    <div class="about">
+        <div class="inner-section">
+            <h1>About Us</h1>
+            <p class="text">
+                Welcome to Our Library Management System! We, <b>Lalitha Shivapriya, Kalyani, Azra, Anusha</b> designed you you in mind, Our system makes it easy to explore and borrow books, 
+                journals & many more. We're here to support your learning journey by providing access to a diverse range of materials & enduring a seamless borrowing Experiance.
+                Join us in embracing the power of knowledge and discovery. Let's make your library experience simple, efficient, and enjoyable! 
+                <h3>"Don't forget to read Books to know life."</h3>
+                <br>
+            </p>
+            <div class="skills">
+              <div class="social-media">
+                <p>Connect with us :</p>
+                <div class="social-icons">
+                  <a href="https://www.facebook.com/lalithashivapriya?mibextid=ZbWKwL">
+                    <i class="fab fa-facebook-f"></i>
+                  </a>
+                  <a href="https://www.instagram.com/sriramoju_shivapriya?igsh=ZXR5Z2ozMWs2dml1">
+                    <i class="fab fa-instagram"></i>
+                  </a>
+                  <a href="https://in.linkedin.com/in/lalitha-shivapriya-8086492b3">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                  <a href="https://www.linkedin.com/in/mantramurthi-kalyani-562720258">
+                    <i class="fab fa-linkedin-in"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

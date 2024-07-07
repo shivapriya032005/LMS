@@ -1,0 +1,20 @@
+<!-- In templates/library/view_notes.html -->
+
+{% extends 'base.html' %}  <!-- Adjust base template as per your project -->
+
+{% block content %}
+<h2>Your Notes</h2>
+{% if user_notes %}
+    <ul>
+    {% for note in user_notes %}
+        <li>
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.content }}</p>
+            <p>Created at: {{ note.created_at }}</p>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No notes found.</p>
+{% endif %}
+{% endblock %}

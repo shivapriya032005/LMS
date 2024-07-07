@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Book Details</title>
+</head>
+<body>
+    <h1>Book Details</h1>
+    <p>Name: {{ book.name }}</p>
+    <p>Author: {{ book.author }}</p>
+    <p>ISBN: {{ book.isbn }}</p>
+    <!-- Add more details as needed -->
+    <a href="{% url 'scan_barcode' %}">Scan Another Book</a>
+</body>
+</html>

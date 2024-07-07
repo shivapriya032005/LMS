@@ -1,0 +1,6 @@
+<td>
+                  <form method="post" action="{% url 'return_book' book_id=t.3 %}">
+                    {% csrf_token %}
+                    <button type="submit">Return Book</button>
+                  </form>
+                </td>
